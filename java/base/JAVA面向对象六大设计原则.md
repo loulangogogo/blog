@@ -1,0 +1,172 @@
+# JAVA面向对象六大设计原则
+
+
+
+## 一、开闭原则
+
+
+
+### 概述
+
+> Software entities like classes, modules and functions should be open for extension but closed for modifications.(一个软件实体如类、模块和函数应该对扩展开放，对修改关闭)
+
+**请注意开闭原则的实体：**
+
+- 项目获软件产品中按照一定的逻辑规则划分的模块
+- 抽象和类
+- 方法
+
+
+
+> 开闭原则对扩展开放，对修改关闭，并不意味着不做任何修改，底层模块的变更，必然要有高层模块进行耦合，否则就是一个孤立无意义的代码片段。
+
+&emsp;&emsp;***开闭原则是非常重要的，是六个原则中最基础的一个原则，是精神领袖般的存在。换一种说法，按照java语言的称谓，开闭原则就是抽象类，而其他五大原则就是具体的实现类。***
+
+
+
+### 什么是开闭原则
+
+&emsp;&emsp;其实在概述中我已经描述了开闭原则，接下来用举例来说明一下。
+
+```java
+/*********************************************************
+ ** 测试开闭原则
+ ** <br><br>
+ ** Date: Created in 2024/7/9 22:22
+ ** @author loulan
+ ** @version 0.0.0
+ *********************************************************/
+public class TestKB {
+    public static void main(String[] args) {
+        Iuser user = new User("loulan", "1234567890");
+
+        // 获取用户的手机号码
+        System.out.println(user.getPhone()); // 1234567890
+    }
+}
+
+
+/*********************************************************
+ ** 用户接口实现类
+ ** <br><br>
+ ** Date: Created in 2024/7/9 22:28
+ ** @author loulan
+ ** @version 0.0.0
+ *********************************************************/
+class User implements Iuser{
+    // 用户名
+    private String name;
+    // 用户手机号
+    private String phone;
+
+    // 构造函数构造对象
+    public User(String name, String phone) {
+        this.name = name;
+        this.phone = phone;
+    }
+
+    // 获取用户名
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    // 获取用户手机号
+    @Override
+    public String getPhone() {
+        return phone;
+    }
+}
+
+/*********************************************************
+ ** 用户接口
+ ** <br><br>
+ ** Date: Created in 2024/7/9 22:28
+ ** @author loulan
+ ** @version 0.0.0
+ *********************************************************/
+interface Iuser{
+    // 获取姓名
+    public String getName();
+    // 获取手机号
+    public String getPhone();
+}
+
+```
+
+&emsp;&emsp;从这个案例中我们可以看到，主要是创建用户和获取用户的手机号码并进行打印，这是我们在开发中很常见的一个场景。
+
+&emsp;&emsp;一天，根据隐私要求产品要求所有的手机号都要进行脱敏展示，这个时候我们有如下几种解决方案：
+
+- **修改接口**
+
+&emsp;&emsp;在 Iuser 接口上新增一个方法 getMaskPhone()，专门用于获取脱敏的手机号码，所有的实现类都要实现该方法。但是这样操作的后果就是所有实现类 (目前就一个，实际项目可能很多) 的修改，main方法也要修改；这样操作的影响太大，Iuser 作为接口应该是稳定可靠的，不应该经常的发生变化，否则作为接口的契约作用就失效了。所以，**该方案否定**。
+
+- **修改实现类**
+
+​        修改实现类首先不能是添加一个脱敏方法，为什么呢？因为我们实例化的时候，虽然是 User，然而变量是父级接口 Iuser，这样就会导致方法找不到，除非将变量也修改为 User，但是这样就失去了接口Iuser的作用了，并不提倡这样操作。
+
+​	另外的一个方式就是修改 getPhone() 方法了，直接在方法里面进行脱敏，这样其他的什么都不用修改就可以达到脱敏的效果了。但是我们要注意的问题是，User 对象的使用可能并不是只有这一个地方使用，有些地方可能还是需要获取真实的手机号码进行发送短信，或者登陆匹配等等这样的操作。一旦在 getPhone() 方法里面进行了脱敏，导致无法获取真实的手机号码，带来的bug也是很严重的。所以，**该方案也不是最优的**。
+
+- **通过扩展实现变化**
+
+​        通过扩展 User 类来实现，可以新增一个 PhoneMaskUser 类来继承 User 类，并重写方法 getPhone() ,
+
+这样只需要在需要脱敏的地方将 User 对象替换为 PhoneMaskUser 就可以了，还不会影响到原来正常使用 User 类的方法。
+
+
+
+**新增的类方法和修改如下：**
+
+```java
+/*********************************************************
+ ** 测试开闭原则
+ ** <br><br>
+ ** Date: Created in 2024/7/9 22:22
+ ** @author loulan
+ ** @version 0.0.0
+ *********************************************************/
+public class TestKB {
+    public static void main(String[] args) {
+      
+      	// 这里的实例化类修改
+        Iuser user = new PhoneMaskUser("loulan", "1234567890");
+
+        // 获取用户的手机号码
+        System.out.println(user.getPhone()); // 123****7890
+    }
+}
+
+/*********************************************************
+ ** 手机号吗脱敏的用户
+ ** <br><br>
+ ** Date: Created in 2024/7/9 23:03
+ ** @author loulan
+ ** @version 0.0.0
+ *********************************************************/
+class PhoneMaskUser extends User{
+    public PhoneMaskUser(String name, String phone) {
+        super(name, phone);
+    }
+
+    @Override
+    public String getPhone() {
+        // 手机号码脱敏的方法
+        return StrTool.dataMasking(super.getPhone(), MaskingDataTypeEnum.PHONE);
+    }
+}
+```
+
+​        这样我们就可以安全、稳定、高效的实现手机号码脱敏的需求。这就是开闭原则的一个简单应用，对类的扩展开放，对修改关闭。
+
+### 为什么使用开闭原则
+
+1. 开闭原则对测试的影响
+
+   
+
+2. 开闭原则可以提高复用性
+
+3. 开闭原则可以提高可复用性
+
+4. 面向对象的开发要求
