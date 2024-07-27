@@ -1,6 +1,16 @@
 <script setup lang="ts">
 import TreeSubMenu from "@/view/menu-tree/tree-sub-menu.vue";
-import treeData from '../../../index.json'
+import ask from '@/ask/index';
+import {onMounted, ref} from "vue";
+
+const treeData = ref();
+
+
+onMounted(async ()=>{
+  const res:any = await ask.get("https://loulangogogo.github.io/blog/index.json");
+  treeData.value = res;
+
+})
 </script>
 
 <template>
