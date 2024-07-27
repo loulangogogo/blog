@@ -1,0 +1,25 @@
+[
+  {
+    "title": "JAVA",
+    "children": [
+      {
+        "title": "基础",
+        "children": [
+          {
+            "title": "线程安全问题",
+            "url": "https://www.baidu.com"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "基础",
+    "children": [
+      {
+        "title": "线程安全问题",
+        "url": "https://www.baidu.com"
+      }
+    ]
+  }
+]

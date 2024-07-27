@@ -1,2 +1,4 @@
 
 .DS_Store
+home-vue/.idea
+home-vue/node_modules/*
