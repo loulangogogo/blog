@@ -119,7 +119,7 @@ docker-compose -f jenkins.yml up -d
 docker logs -f -t -n 100 jenkins
 ```
 
-![](https://loulangogogo.github.io/blog/images/202408/080949.png)
+![](../../images/202408/080949.png)
 
 这个地方需要记住地下输出的密码串，这个密码串在管理员开始登陆的时候是需要使用的。
 
@@ -144,9 +144,10 @@ http://192.168.2.84:20000
 &emsp;&emsp;第一进入的时候，如果对jenkins不熟悉，建议使用推荐安装插件。
 
 <div style="display: flex; align-items: center; justify-content: space-between;">
-  <img src="https://loulangogogo.github.io/blog/images/202408/080954.png" alt="Left Image" style="max-width: 49%;">
+  <img src="../../images/202408/080954.png" alt="Left Image" style="max-width: 49%;">
   <img src="https://loulangogogo.github.io/blog/images/202408/080955.png" alt="Right Image" style="max-width: 49%;">
 </div>
+
 
 
 
