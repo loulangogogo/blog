@@ -135,7 +135,7 @@ http://192.168.2.84:20000
 
 &emsp;&emsp;通过 docker-compose 的配置我们可以看到，这个容器的端口就是 20000 ，我们部署的服务器 IP=192.168.2.84 ，个人可以根据跟人的服务器 IP 进行打开。
 
-![http://192.168.2.84:20000](https://loulangogogo.github.io/blog/images/202408/080953.png)
+![http://192.168.2.84:20000](../../images/202408/080953.png)
 
 
 
@@ -145,8 +145,9 @@ http://192.168.2.84:20000
 
 <div style="display: flex; align-items: center; justify-content: space-between;">
   <img src="../../images/202408/080954.png" alt="Left Image" style="max-width: 49%;">
-  <img src="https://loulangogogo.github.io/blog/images/202408/080955.png" alt="Right Image" style="max-width: 49%;">
+  <img src="../../images/202408/080955.png" alt="Right Image" style="max-width: 49%;">
 </div>
+
 
 
 
@@ -160,9 +161,10 @@ Manager jenkins(系统管理) -> Plugins(插件管理)
 
 
 <div style="display: flex; align-items: center; justify-content: space-between;">
-  <img src="https://loulangogogo.github.io/blog/images/202408/081004.png" alt="Left Image" style="max-width: 49%;">
-  <img src="https://loulangogogo.github.io/blog/images/202408/081002.png" alt="Right Image" style="max-width: 49%;">
+  <img src="../../images/202408/081004.png" alt="Left Image" style="max-width: 49%;">
+  <img src="../../images/202408/081002.png" alt="Right Image" style="max-width: 49%;">
 </div>
+
 
 &emsp;&emsp;我们需要安装 ssh 的远程推送软件，有需要的可以安装 maven 插件(我才用的命令打包，所以没安装)，还可以安装本地语言插件，然后将界面进行汉化。
 
@@ -179,9 +181,10 @@ Manager jenkins(系统管理) -> 系统配置
 
 
 <div style="display: flex; align-items: center; justify-content: space-between;">
-  <img src="https://loulangogogo.github.io/blog/images/202408/081006.png" alt="Left Image" style="max-width: 49%;">
-  <img src="https://loulangogogo.github.io/blog/images/202408/081010.png" alt="Right Image" style="max-width: 49%;">
+  <img src="../../images/202408/081006.png" alt="Left Image" style="max-width: 49%;">
+  <img src="../../images/202408/081010.png" alt="Right Image" style="max-width: 49%;">
 </div>
+
 
 &emsp;&emsp;这里环境变量的配置就相当于我们 windows 的 PATH 的配置，配置了之后我们的 mvn、npm 等命令才可以使用。
 
@@ -194,14 +197,15 @@ Manager jenkins(系统管理) -> 系统配置
 #### 1、 新建任务
 
 <div style="display: flex; align-items: center; justify-content: space-between;">
-  <img src="https://loulangogogo.github.io/blog/images/202408/081011.png" alt="Left Image" style="max-width: 49%;">
-  <img src="https://loulangogogo.github.io/blog/images/202408/081013.png" alt="Right Image" style="max-width: 49%;">
+  <img src="../../images/202408/081011.png" alt="Left Image" style="max-width: 49%;">
+  <img src="../../images/202408/081013.png" alt="Right Image" style="max-width: 49%;">
 </div>
 
 <div style="display: flex; align-items: center; justify-content: space-between;">
-  <img src="https://loulangogogo.github.io/blog/images/202408/081016.png" alt="Left Image" style="max-width: 49%;">
-  <img src="https://loulangogogo.github.io/blog/images/202408/081018.png" alt="Right Image" style="max-width: 49%;">
+  <img src="../../images/202408/081016.png" alt="Left Image" style="max-width: 49%;">
+  <img src="../../images/202408/081018.png" alt="Right Image" style="max-width: 49%;">
 </div>
+
 
 &emsp;&emsp;这个是构建一个简单的 java 的 maven 项目，构建脚本和构建后脚本如下:
 
@@ -258,8 +262,9 @@ exit 1
 #### 2、启动任务
 
 <div style="display: flex; align-items: center; justify-content: space-between;">
-  <img src="https://loulangogogo.github.io/blog/images/202408/081019.png" alt="Left Image" style="max-width: 49%;">
-  <img src="https://loulangogogo.github.io/blog/images/202408/081020.png" alt="Right Image" style="max-width: 49%;">
+  <img src="../../images/202408/081019.png" alt="Left Image" style="max-width: 49%;">
+  <img src="../../images/202408/081020.png" alt="Right Image" style="max-width: 49%;">
 </div>
+
 
 &emsp;&emsp;任务新建完成之后，我们就可以试试自动化部署的功能啦。如图所示我们可以看到构建日志，即使构建失败也能立马找到问题的所在。是不是比手动部署更酸爽。
