@@ -32,16 +32,17 @@
 
 #### git文件状态变换周期
 
-```sequence
+```mermaid
+sequenceDiagram
 participant Untracked
 participant Unmodified
 participant Modified
 participant Staged
-Untracked->Staged : Add the file
-Unmodified->Modified: Edit the fiel 
-Modified->Staged: Stage the file
-Unmodified->Untracked: Remove the file
-Staged->Unmodified: Commit
+Untracked->>Staged : Add the file
+Unmodified->>Modified: Edit the fiel 
+Modified->>Staged: Stage the file
+Unmodified->>Untracked: Remove the file
+Staged->>Unmodified: Commit
 ```
 
 
