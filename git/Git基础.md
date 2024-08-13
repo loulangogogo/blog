@@ -30,6 +30,22 @@
 
 
 
+#### git文件状态变换周期
+
+```sequence
+participant Untracked
+participant Unmodified
+participant Modified
+participant Staged
+Untracked->Staged : Add the file
+Unmodified->Modified: Edit the fiel 
+Modified->Staged: Stage the file
+Unmodified->Untracked: Remove the file
+Staged->Unmodified: Commit
+```
+
+
+
 #### git init
 
 > 该命令将创建一个名为 .git 的子目录，这个子目录含有你初始化的 Git 仓库中所有的必须文件，这些文件是 Git 仓库的骨干。 但是，在这个时候，我们仅仅是做了一个初始化的操作，你的项目里的文件还没有被跟踪
