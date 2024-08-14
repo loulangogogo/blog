@@ -279,7 +279,41 @@ A  test2.md
 
 &emsp;&emsp;这个命令会将暂存区中的文件提交。 如果自上次提交以来你还未做任何修改（例如，在上次提交后马上执行了此命令）， 那么快照会保持不变，而你所修改的只是提交信息。
 
+```shell
+% git log -2
+commit a7bdbf97a2592f1c3b6865391600c8d149aea3fc (HEAD -> main)
+Author: loulan <loulangogogo@163.com>
+Date:   Wed Aug 14 10:18:48 2024 +0800
 
+    test2
+
+commit 04a746488b64a4eae99943ab58b4bde87f19eaa8
+Author: loulan <loulangogogo@163.com>
+Date:   Wed Aug 14 10:18:20 2024 +0800
+
+    内容添加
+
+% git commit --amend -m "test3"
+[main fb379f6] test3
+ Date: Wed Aug 14 10:18:48 2024 +0800
+ 1 file changed, 1 insertion(+)
+ create mode 100644 test.md
+
+% git log -2
+commit fb379f6287e2150f3e535cb41fe96af38b8c505a (HEAD -> main)
+Author: loulan <loulangogogo@163.com>
+Date:   Wed Aug 14 10:18:48 2024 +0800
+
+    test3
+
+commit 04a746488b64a4eae99943ab58b4bde87f19eaa8
+Author: loulan <loulangogogo@163.com>
+Date:   Wed Aug 14 10:18:20 2024 +0800
+
+    内容添加
+```
+
+&emsp;&emsp;通过该案例可以看出，一开存在提交的版本快照为 test2 但是执行 --amend 命令之后，test2 变更为了 test3。**在修补最后的提交时，与其说是修复旧提交，倒不如说是完全用一个 新的提交 替换旧的提交， 理解这一点非常重要。从效果上来说，就像是旧有的提交从未存在过一样，它并不会出现在仓库的历史中。**
 
 
 
@@ -420,3 +454,8 @@ git log --pretty=format:"%h - %an, %ar : %s"
 # --since 和 --until 这种按照时间作限制的选项很有用
 ```
 
+
+
+#### git checkout
+
+> git checkout — <file> 是一个危险的命令。 你对那个文件在本地的任何修改都会消失——Git 会用最近提交的版本覆盖掉它。 除非你确实清楚不想要对那个文件的本地修改了，否则请不要使用这个命令。
