@@ -136,23 +136,112 @@ spring:
 
 **这么多的数据源都指向的是同一个 redis ，应该也是可以指向不同的 redis 的，但是要和 sentienl-dashboard 配置的一样才行。**
 
-配置这么多的数据源主要是因为规则和通道 对应 到 sentinel-dashboard 的每一个限流方式。
+配置这么多的数据源主要是因为规则和通道 (规则类型rule-type) 对应 到 sentinel-dashboard 的每一个限流方式。
 
 > **重要的是，规则健 rule-key 和 通道channel 要与镜像介绍的格式进行配置**
 >
-> "Sentinel:Config:" + 应用名称 + 规则枚举(`com.alibaba.cloud.sentinel.datasource.RuleType`)
+> "Sentinel:Config:" + 应用名称(注册到sentinel-dashboard的应用名称) + 规则枚举(`com.alibaba.cloud.sentinel.datasource.RuleType`)
 >
-> "Sentinel:Channel:" + 应用名称 + 规则枚举(`com.alibaba.cloud.sentinel.datasource.RuleType`)
+> "Sentinel:Channel:" + 应用名称(注册到sentinel-dashboard的应用名称) + 规则枚举(`com.alibaba.cloud.sentinel.datasource.RuleType`)
 
 #### 3. 启动应用
 
 配置完成之后就可以启动应用了。打开 http://127.0.0.1:8619 就可以看到注册进行来的服务应用。
 
+> 注意：
+>
+> 1. 规则异常信息提示可以通过实现 `com.alibaba.csp.sentinel.adapter.spring.webmvc.callback.BlockExceptionHandler`来修改。
+> 2. 一些规则需要填写 来源应用、流控应用 等，该名称是实现`com.alibaba.csp.sentinel.adapter.spring.webmvc.callback.RequestOriginParser`来返回应用名称的。通过这个也可以轻松限制指定来源请求的流量。
+
+```java
+package org.loulan.application.dragon.common.config.sentinel;
+
+import com.alibaba.csp.sentinel.adapter.spring.webmvc.callback.BlockExceptionHandler;
+import com.alibaba.csp.sentinel.slots.block.BlockException;
+import io.github.loulangogogo.water.json.JsonTool;
+import org.loulan.application.dragon.common.core.config.status.ResponseStatus;
+import org.loulan.application.dragon.common.core.response.BaseResponse;
+import org.loulan.application.dragon.common.core.response.R;
+import org.springframework.stereotype.Component;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
+
+/*********************************************************
+ ** sentinel异常处理器
+ ** <br><br>
+ ** Date: Created in 2022/11/17 11:33
+ ** @author loulan
+ ** @version 0.0.0
+ *********************************************************/
+@Component
+public class SentinellHandler implements BlockExceptionHandler {
+    /**
+     * 当sentinel规则限制一些请求发生异常就会进入到整个处理器
+     * 在 Sentinel 中所有流控降级相关的异常都是异常类 BlockException 的子类
+     * 流控异常：FlowException
+     * 熔断降级异常：DegradeException
+     * 系统保护异常：SystemBlockException
+     * 热点参数限流异常：ParamFlowException,这个的异常好像需要单独使用竹节@SentinelResources来写
+     * @param
+     * @return
+     * @exception
+     * @author     :loulan
+     * */
+    @Override
+    public void handle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, BlockException e) throws Exception {
+        httpServletResponse.setStatus(ResponseStatus.OK);
+        httpServletResponse.setCharacterEncoding("UTF-8");
+        httpServletResponse.setContentType("application/json");
+        PrintWriter writer = httpServletResponse.getWriter();
+        BaseResponse body = R.fail("请求频繁，请稍后重试。");
+        writer.write(JsonTool.toJson(body));
+        writer.close();
+    }
+}
+
+```
+
+```java
+package org.loulan.application.dragon.common.config.sentinel;
+
+import com.alibaba.csp.sentinel.adapter.spring.webmvc.callback.RequestOriginParser;
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import io.github.loulangogogo.water.tool.StrTool;
+
+import javax.servlet.http.HttpServletRequest;
+
+/*********************************************************
+ ** sentinl设置配置规则的【来源应用】【流控应用】等就是这个数据，可以根据请求里面的某个请求头来进行判断，或者请求参数判断。
+ **
+ ** @author loulan
+ ** @since 17
+ *********************************************************/
+public class SentinelOriginParser implements RequestOriginParser {
+    @Override
+    public String parseOrigin(HttpServletRequest httpServletRequest) {
+        // 这里使用请求头的origin字段来判断，如果这个返回值和配置应用一样才能起效果
+        // 也可以使用token里面的值来进行判断
+        String origin = httpServletRequest.getHeader("origin");
+
+        // 如果是空定义一个应用名来代替，因为空被认为是有效的
+        return StrTool.isEmpty(origin)?"empty-origin":origin;
+    }
+}
+
+```
+
 
 
 # 执行流程说明
 
-&emsp;&emsp;当我们配置规则之后就可以在redis中看到对应配置的规则数据。服务重启会自动从 redis 中加载规则数据。**下载介绍一下这个规则的设置流程。**
+&emsp;&emsp;当我们配置规则之后就可以在redis中看到对应配置的规则数据。服务重启会自动从 redis 中加载规则数据。**下面介绍一下这个规则的设置流程。**
 
-1. 控制台 打开 系统规则 页面的时候，控制台会发送 http 请求向服务获取规则数据进行显示。也就是说控制台页面显示的规则数据不是直接从 redis 中获取的，而是向服务这边请求获取的()。
-2. 
+1. 控制台 打开 系统规则 页面的时候，控制台会发送 http 请求向 springboot 服务获取规则数据进行显示。也就是说控制台页面显示的规则数据不是直接从 redis 中获取的，而是向服务这边请求获取的。
+2. springboot 项目启动的时候会自动从 redis 中加载规则数据到内存中。
+3. 当 sentinel-dashboard 控制添加、修改、删除规则数据的时候，会直接操作 redis 中的数据，并通过 redis 的发布订阅通道来发布该规则。springboot 项目服务通过 redis 的发布订阅通道获取到数据的变更信息，然后修改内存中的数据（项目服务并不会直接修改 redis 中的数据）。
+4. 添加、修改、删除完成之后，sentinel-dashboard 控制台会发送 http 请求获取数据来展示变更完成的规则数据。
+
+> **redis 中的规则数据是 sentinel-dashboard 控制台修改的，但是 redis 中规则数据的读取是项目服务来读取的。**
+
