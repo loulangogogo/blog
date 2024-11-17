@@ -1,7 +1,3 @@
-[toc]
-
-
-
 # 目录说明
 
 - **java** ：关于 java 的基础、架构、设计等等内容
@@ -64,4 +60,4 @@
     - [类型-有序集合](./software/redis/类型-有序集合)
     - [类型-散列](./software/redis/类型-散列)
     - [类型-字符串](./software/redis/类型-字符串)
-    - [类型-列表](./software/redis/类型-列表)
+    - [类型-列表](./software/redis/类型-列表)****
