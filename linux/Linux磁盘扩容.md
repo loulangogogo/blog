@@ -17,12 +17,10 @@
 
 **接下来的操作就很简单，只要用过 vm 虚拟机摸索一下也能操作出来（编辑虚拟机，针对磁盘进行扩展）。**
 
-<div style="display: flex;flex-direction: row; align-items: center; justify-content: space-around;">
-  <image src="../.images/202408/291424.png" alt="Left Image" style="max-width: 49%;">
-  <image src="../.images/202408/291425.png" alt="Right Image" style="max-width: 49%;">
+<div style="display: flex; align-items: center; justify-content: space-between;">
+  <image src="../.images/202408/291424.png" alt="Left Image" style="max-width: 49%;"/>
+  <image src="../.images/202408/291425.png" alt="Right Image" style="max-width: 49%;"/>
 </div>
-
-
 
 **扩容完成启动虚拟机进行磁盘命令扩容。**
 
