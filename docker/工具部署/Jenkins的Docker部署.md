@@ -119,7 +119,7 @@ docker-compose -f jenkins.yml up -d
 docker logs -f -t -n 100 jenkins
 ```
 
-![](../../images/202408/080949.png)
+![](../../.images/202408/080949.png)
 
 这个地方需要记住地下输出的密码串，这个密码串在管理员开始登陆的时候是需要使用的。
 
@@ -135,7 +135,7 @@ http://192.168.2.84:20000
 
 &emsp;&emsp;通过 docker-compose 的配置我们可以看到，这个容器的端口就是 20000 ，我们部署的服务器 IP=192.168.2.84 ，个人可以根据跟人的服务器 IP 进行打开。
 
-![http://192.168.2.84:20000](../../images/202408/080953.png)
+![http://192.168.2.84:20000](../../.images/202408/080953.png)
 
 
 
@@ -144,8 +144,8 @@ http://192.168.2.84:20000
 &emsp;&emsp;第一进入的时候，如果对jenkins不熟悉，建议使用推荐安装插件。
 
 <div style="display: flex; align-items: center; justify-content: space-between;">
-  <img src="../../images/202408/080954.png" alt="Left Image" style="max-width: 49%;">
-  <img src="../../images/202408/080955.png" alt="Right Image" style="max-width: 49%;">
+  <img src="../../.images/202408/080954.png" alt="Left Image" style="max-width: 49%;">
+  <img src="../../.images/202408/080955.png" alt="Right Image" style="max-width: 49%;">
 </div>
 
 
@@ -161,8 +161,8 @@ Manager jenkins(系统管理) -> Plugins(插件管理)
 
 
 <div style="display: flex; align-items: center; justify-content: space-between;">
-  <img src="../../images/202408/081004.png" alt="Left Image" style="max-width: 49%;">
-  <img src="../../images/202408/081002.png" alt="Right Image" style="max-width: 49%;">
+  <img src="../../.images/202408/081004.png" alt="Left Image" style="max-width: 49%;">
+  <img src="../../.images/202408/081002.png" alt="Right Image" style="max-width: 49%;">
 </div>
 
 
@@ -181,8 +181,8 @@ Manager jenkins(系统管理) -> 系统配置
 
 
 <div style="display: flex; align-items: center; justify-content: space-between;">
-  <img src="../../images/202408/081006.png" alt="Left Image" style="max-width: 49%;">
-  <img src="../../images/202408/081010.png" alt="Right Image" style="max-width: 49%;">
+  <img src="../../.images/202408/081006.png" alt="Left Image" style="max-width: 49%;">
+  <img src="../../.images/202408/081010.png" alt="Right Image" style="max-width: 49%;">
 </div>
 
 
@@ -197,13 +197,13 @@ Manager jenkins(系统管理) -> 系统配置
 #### 1、 新建任务
 
 <div style="display: flex; align-items: center; justify-content: space-between;">
-  <img src="../../images/202408/081011.png" alt="Left Image" style="max-width: 49%;">
-  <img src="../../images/202408/081013.png" alt="Right Image" style="max-width: 49%;">
+  <img src="../../.images/202408/081011.png" alt="Left Image" style="max-width: 49%;">
+  <img src="../../.images/202408/081013.png" alt="Right Image" style="max-width: 49%;">
 </div>
 
 <div style="display: flex; align-items: center; justify-content: space-between;">
-  <img src="../../images/202408/081016.png" alt="Left Image" style="max-width: 49%;">
-  <img src="../../images/202408/081018.png" alt="Right Image" style="max-width: 49%;">
+  <img src="../../.images/202408/081016.png" alt="Left Image" style="max-width: 49%;">
+  <img src="../../.images/202408/081018.png" alt="Right Image" style="max-width: 49%;">
 </div>
 
 
@@ -262,8 +262,8 @@ exit 1
 #### 2、启动任务
 
 <div style="display: flex; align-items: center; justify-content: space-between;">
-  <img src="../../images/202408/081019.png" alt="Left Image" style="max-width: 49%;">
-  <img src="../../images/202408/081020.png" alt="Right Image" style="max-width: 49%;">
+  <img src="../../.images/202408/081019.png" alt="Left Image" style="max-width: 49%;">
+  <img src="../../.images/202408/081020.png" alt="Right Image" style="max-width: 49%;">
 </div>
 
 
