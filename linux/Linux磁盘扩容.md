@@ -155,7 +155,7 @@
 
 **这里注意不同的Linux有区别，比如红帽和乌班图命令就不一样，这里以红帽为例，如果是其他版本请自行搜索文件系统扩容命令**
 
-> **cat /etc/fstab | grep centos-root**
+> **cat /etc/fstab \| grep centos-root**
 >
 > 查看文件系统
 
