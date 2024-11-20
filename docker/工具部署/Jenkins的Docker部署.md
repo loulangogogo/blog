@@ -30,10 +30,11 @@
    通过自动化常规任务，开发团队可以专注于编写高质量的代码。
    更快的反馈循环意味着更快的迭代速度和更短的开发周期。
 
-4. 易于集成:
-   Jenkins 支持大量的插件，可以很容易地与其他工具和服务集成。
-   这些插件覆盖了从版本控制系统到测试框架、再到部署工具的各个方面。
-
+4. <div style="display: flex;flex-direction: row; align-items: center; justify-content: space-around;">
+     <image src="../.images/202408/291424.png" alt="Left Image" style="max-width: 49%;">
+     <image src="../.images/202408/291425.png" alt="Right Image" style="max-width: 49%;">
+   </div>
+   
 5. 灵活性和可扩展性:
    Jenkins 是高度可配置的，并且可以通过安装插件来扩展其功能。
    可以根据项目需求定制工作流程和构建策略。
