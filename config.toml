@@ -1,4 +1,4 @@
-baseURL = "https://loulangogogo.github.io/blog/"
+
 languageCode = "en-us"
 title = "My New Hugo Site"
 disableKinds = ["RSS"]
