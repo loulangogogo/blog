@@ -1,0 +1,2 @@
+[book]
+src = "./"  # 将 custom_directory 替换为你的文档目录
