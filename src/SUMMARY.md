@@ -1,6 +1,10 @@
-# 目录说明
+# Summary
 
-- **java** ：关于 java 的基础、架构、设计等等内容
+[介绍](../README.md)
+
+# Reference Guide
+
+- java
   - 第三方应用
     - [sentinel-dashboard数据redis持久化](../java/第三方应用/sentinel-dashboard数据%20redis%20持久化.md)
   - 基础
@@ -36,28 +40,28 @@
       - [迪米特原则](../java/基础/Java面向对象六大设计原则/迪米特原则)
       - [开闭原则](../java/基础/Java面向对象六大设计原则/开闭原则)]
     - [关于parallelStream的线程安全](../java/基础/关于parallelStream的线程安全)
-- **git** ： 涉及 git 的基础和使用的内容
+- git
   - [git标签](./git/git标签)
   - [git分支](./git/git分支)
   - [Git基础](./git/Git基础)
   - [git命令动图](./git/git命令动图)
   - [git远程仓库](./git/git远程仓库)
-- **docker** ： 关于 docker 镜像的创建；docker 工具的部署；docker 基础知识等内容
+- docker
   - 工具部署
     - [Jenkins的Docker部署](./docker/工具部署/Jenkins的Docker部署)
-- **markdown** ： 关于 markdown 的使用内容
+- markdown
   - [数学公式](./markdown/数学公式)
   - [Markdown扩展语法GFM](./markdown/Markdown扩展语法GFM)
-- **mermaid** ： 关于 mermaid 的流程图、时序图 等使用内容
+- mermaid
   - [流程图](./mermaid/流程图)
   - [时序图](./mermaid/时序图)
   - [类图](./mermaid/类图)
-- **linux** ：关于linux的学习文档
+- linux
   - [Linux磁盘扩容](./linux/Linux磁盘扩容)
-- **software** ：软件学习
+- software
   - redis
     - [类型-集合](./software/redis/类型-集合)
     - [类型-有序集合](./software/redis/类型-有序集合)
     - [类型-散列](./software/redis/类型-散列)
     - [类型-字符串](./software/redis/类型-字符串)
-    - [类型-列表](./software/redis/类型-列表)****
+    - [类型-列表](./software/redis/类型-列表)
