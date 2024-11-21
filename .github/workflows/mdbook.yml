@@ -37,6 +37,9 @@ jobs:
           curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf -y | sh
           rustup update
           cargo install --version ${MDBOOK_VERSION} mdbook
+
+          # 安装mdbook的折叠菜单的插件
+          cargo install mdbook-collapsible
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
