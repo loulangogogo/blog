@@ -1,24 +1,4 @@
-# 目录
-
-[git init](#git init )
-
-[git clone](#git clone  `<URl>`)
-
-[git status](#git status)
-
-[git add](#git add `<files>`)
-
-[git diff](#git diff)
-
-[git commit](#git commit )
-
-[git rm](#git rm)
-
-[git mv](#git mv)
-
-[git log](#git log)
-
-# 命令
+# 概述
 
 #### 三种状态
 
@@ -47,23 +27,26 @@ Staged->>Unmodified: Commit
 
 
 
-#### git init
+# git init
 
 > 该命令将创建一个名为 .git 的子目录，这个子目录含有你初始化的 Git 仓库中所有的必须文件，这些文件是 Git 仓库的骨干。 但是，在这个时候，我们仅仅是做了一个初始化的操作，你的项目里的文件还没有被跟踪
 
 
 
-#### git clone  `<URl>`
+# git clone  `<URl>`
 
 > Git 克隆的是该 Git 仓库服务器上的几乎所有数据，而不是仅仅复制完成你的工作所需要文件。 当你执行 git clone 命令的时候，默认配置下远程 Git 仓库中的每一个文件的每一个版本都将被拉取下来
 
 ```shell
 git clone https://github.com/loulangogogo/blog.git
+
+# 克隆指定的分支
+git clone -b `<分支名称>` https://github.com/loulangogogo/blog.git
 ```
 
 
 
-#### git status
+#  git status
 
 > 可以用 git status 命令查看哪些文件处于什么状态。
 
@@ -113,7 +96,7 @@ nothing added to commit but untracked files present (use "git add" to track)
 
 
 
-#### git add `<files>`
+# git add `<files>`
 
 > 使用命令 git add 开始跟踪一个文件。
 >
@@ -167,7 +150,9 @@ AM test.md
 A  test.md
 ```
 
-#### git diff
+
+
+# git diff
 
 > 如果 git status 命令的输出对于你来说过于简略，而你想知道具体修改了什么地方，可以用 git diff 命令。
 
@@ -231,7 +216,7 @@ index 0000000..9daeafb
 
 
 
-#### git commit 
+# git commit 
 
 > 提交时记录的是放在暂存区域的快照。 任何还未暂存文件的仍然保持已修改状态，可以在下次提交时纳入版本管理。 每一次运行提交操作，都是对你项目作一次快照，以后可以回到这个状态，或者进行比较。
 
@@ -315,7 +300,7 @@ Date:   Wed Aug 14 10:18:20 2024 +0800
 
 
 
-#### git rm
+# git rm
 
 > 要从 Git 中移除某个文件，就必须要从已跟踪文件清单中移除（确切地说，是从暂存区域移除），然后提交。 可以用 git rm 命令完成此项工作，并连带从工作目录中删除指定的文件，这样以后就不会出现在未跟踪文件清单中了。
 
@@ -388,7 +373,7 @@ git rm *.log
 
 
 
-#### git mv
+# git mv
 
 > 不像其它的 VCS 系统，Git 并不显式跟踪文件移动操作。 如果在 Git 中重命名了某个文件，仓库中存储的元数据并不会体现出这是一次改名操作。
 
@@ -426,7 +411,7 @@ RM test.md -> test.json
 
 
 
-#### git log
+# git log
 
 > 在提交了若干更新，又或者克隆了某个项目之后，你也许想回顾下提交历史。 完成这个任务最简单而又有效的工具是 git log 命令。
 

@@ -1,14 +1,4 @@
-# 目录
-
-[git remote](#git remote)
-
-[git fetch](#git fetch)
-
-[git push](#git push)
-
-# 命令
-
-#### git remote
+# git remote
 
 > **git remote -v**
 >
@@ -105,7 +95,7 @@ origin  http://gitlab.dsknykj.cn/loulan/test.git (push)
 
 
 
-#### git fetch
+# git fetch
 
 > **git fetch `<remote>`**
 >
@@ -119,9 +109,80 @@ From http://gitlab.dsknykj.cn/loulan/test
  * branch            main       -> FETCH_HEAD
 ```
 
+#### 常见用法（推荐使用）
+
+```shell
+git fetch origin
+git diff origin/main   # 查看远程和本地分支的差异
+git merge origin/main  # 决定是否合并
+```
 
 
-#### git push
+
+
+
+
+
+# git pull
+
+> **git pull `<remote>`**
+>
+> 这个命令访问远程仓库，并拉去远程仓库数据与本地仓库比较**合并、变基或快速前进**。
+
+**合并、变基还是快速前进是需要进行提前配置的，如果没有配置，那么当前执行 git pull就回出现如下的错误：**
+
+```shell
+loulan@loulandeMacBook-Pro-2 study-ts % git pull
+hint: You have divergent branches and need to specify how to reconcile them.
+hint: You can do so by running one of the following commands sometime before
+hint: your next pull:
+hint: 
+hint:   git config pull.rebase false  # merge
+hint:   git config pull.rebase true   # rebase
+hint:   git config pull.ff only       # fast-forward only
+hint: 
+hint: You can replace "git config" with "git config --global" to set a default
+hint: preference for all repositories. You can also pass --rebase, --no-rebase,
+hint: or --ff-only on the command line to override the configured default per
+hint: invocation.
+fatal: Need to specify how to reconcile divergent branches.
+```
+
+可以看到，提示中给出了三种解决方案：
+
+> 将远程分支的更改与本地分支合并，保留分支的合并历史。
+>
+> git config pull.rebase false 
+
+
+
+> 将本地更改应用到远程分支的最新提交之上，保持历史线性。
+>
+> git config pull.rebase true
+
+
+
+> 只在没有分歧时拉取更新。如果有分歧，将报错。
+>
+> git config pull.ff only
+
+**一般情况下，我们都需要保持代码变动的历史记录，所以大部分时候我们都选择的是 git config pull.rebase false .**
+
+
+
+#### 常见用法
+
+```shell
+git pull origin main
+```
+
+
+
+
+
+
+
+# git push
 
 > **git push <remote> <branch>**
 >
