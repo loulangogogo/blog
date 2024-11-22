@@ -109,7 +109,7 @@ Switched to branch 'new-0'
 
 > **git merge `<branchName>`**
 >
-> 将制定分支的代码合并到当前分支
+> 将指定分支的代码合并到当前分支
 
 ```shell
 % echo "ok" > ok.txt
