@@ -8,7 +8,34 @@
 
 ## 用法
 
+```java
+@Aspect
+@Component
+public class PerformanceAspect {
+
+    @Around("execution(* com.example.service.*.*(..))")
+    public Object logExecutionTime(ProceedingJoinPoint joinPoint) throws Throwable {
+        long start = System.currentTimeMillis();
+        Object result = joinPoint.proceed(); // 执行目标方法
+        long elapsedTime = System.currentTimeMillis() - start;
+
+        System.out.println("Method executed in: " + elapsedTime + "ms");
+        return result; // 返回目标方法的结果
+    }
+}
+```
+
 
 
 ## 属性
+
+### 一、value
+
+> **[@Pointcut](./@Pointcut.md) ==> value**
+
+
+
+### 二、argNames
+
+> **[@Pointcut](./@Pointcut.md) ==> argNames**
 
