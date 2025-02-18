@@ -85,7 +85,26 @@ Switched to a new branch 'new-1'
 * new-1
 ```
 
-### 分支切换
+> **git checkout --orphan <new-branch-name>**
+>
+> 创建了一个没有历史记录的孤儿分支【就是一个单独的分支，没有任何提交记录】
+
+```shell
+% git checkout --orphan new-2
+Switched to a new branch 'new-2'
+
+% git branch
+  main
+  main-0.1
+  main-0.2
+  new-0
+  new-1
+* new-2
+```
+
+
+
+### * 分支切换
 
 > **git checkout `<branchName>`**
 >
