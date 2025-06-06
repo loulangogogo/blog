@@ -87,6 +87,14 @@ Switched to a new branch 'new-1'
 
 > **git checkout --orphan <new-branch-name>**
 >
+> > [!tip]
+> >
+> > git rm -rf .  *# 删除所有跟踪的文件*
+> >
+> > git commit --allow-empty -m "Initial empty commit"
+> >
+> > git push origin <new-branch-name>
+>
 > 创建了一个没有历史记录的孤儿分支【就是一个单独的分支，没有任何提交记录】
 
 ```shell
