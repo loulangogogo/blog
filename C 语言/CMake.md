@@ -117,5 +117,63 @@ loulan@loulandeMacBook-Pro F3 % cmake -P 3.4.4.cmake
 的
 ```
 
+#### (五)、括号参数
 
+> [!IMPORTANT]
+>
+> CMake 的括号参数会作为一个整体船体给命令。它不处理文本中的任何特殊字符（包括转义字符）或变量引用预发，直接保留原始的文本。
+
+```cmake
+message([===[这个是一\?\n段用
+\r来测${sdf}试话语]===])
+```
+
+```shell
+loulan@loulandeMacBook-Pro F3 % cmake -P 3.4.5.cmake
+这个是一\?\n段用
+\r来测${sdf}试话语
+```
+
+
+
+### 二、变量
+
+#### (一)、普通变量
+
+> set(`<变量>` `<值>`... [PARENT_SCOPE])
+
+- 变量值可以由若干参数来提供，这些参数会被分号分隔连接成一个列表的形式。
+- PARENT_SCOPE将变量定义到父作用域中
+
+```cmake
+function(f)
+    # 由于这个使用了 PARENT_SCOPE，所以可以在外部直接访问到（上一级）
+    set(testX "666" PARENT_SCOPE)
+    # 这个变量只在当前作用域有效
+    set(testY "777")
+endfunction()
+
+
+set(test 1 2 3 4)
+message(${test})
+set(test xyz)
+message(${test})
+f()
+message(${testX})
+message(${testY})
+
+```
+
+```cmd
+loulan@loulandeMacBook-Pro F3.5 % cmake -P F3.5.2.1.cmake
+1234
+xyz
+666
+CMake Error at F3.5.2.1.cmake:13 (message):
+  message called with incorrect number of arguments
+```
+
+#### (二)、缓冲变量
+
+#### (三)、环境变量
 
