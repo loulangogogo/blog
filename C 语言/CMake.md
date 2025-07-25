@@ -144,6 +144,7 @@ loulan@loulandeMacBook-Pro F3 % cmake -P 3.4.5.cmake
 
 - 变量值可以由若干参数来提供，这些参数会被分号分隔连接成一个列表的形式。
 - PARENT_SCOPE将变量定义到父作用域中
+- 普通变量的应用语法是 `${...}`
 
 ```cmake
 function(f)
@@ -175,5 +176,66 @@ CMake Error at F3.5.2.1.cmake:13 (message):
 
 #### (二)、缓冲变量
 
+> set(`<变量>` `<值>`... CACHE `<变量类型>` `<变量描述>` [FORCE])
+
+- 定义变量和值的时候与设置 **普通变量** 没有区别
+- **CACHE** 用来表示这个是一个缓冲变量，缓冲变量具有全局作用域，因此不需要PARENT_SCOPE
+- **变量类型** 有5中取值
+  - BOOL 布尔型
+  - FILEPATH 文件路径类型
+  - PATH 目录路径类型
+  - STRING 文本类型
+  - INTERNAL 内部使用
+- **变量描述** 用于给出这个缓冲变量的详细说明
+- **FORCE** 用于强制覆盖先前缓冲变量的值。
+  - 如果先前变量不存在，那么无论是否有FORCE都会设置成功
+  - 如果先前变量存在，那么不设置FORCE那么就会失败
+- 缓冲变量的引用语法是 `$CACHE{...}`
+
+```cmake
+set(test 123 CACHE STRING "")
+# // 因为缓冲变量已经存在，所以不会被覆盖
+set(test 456 CACHE STRING "")
+message($CACHE{test})
+
+set(test 789 CACHE STRING "" FORCE)
+message($CACHE{test})
+
+# 布尔类型可以使用option进行定义，选项是 ON/OFF
+# option(<变量> <变量描述> [<ON|OFF>])
+option(testBool "test" ON)
+message($CACHE{testBool})
+```
+
+```cmd
+loulan@loulandeMacBook-Pro F3.5 % cmake -P 3.5.2.2.cmake
+123
+789
+ON
+```
+
+
+
 #### (三)、环境变量
+
+> set(ENV{`<环境变量>` `<值>`})
+
+- 环境变量具有全局作用域，但是不支持多参数列表来定义值
+- cmake定义的环境变量只会影响当前的cmake进程，不会影响其他进程和系统环境变量
+- 环境变量的应用语法是 `$ENV{...}`
+
+```cmake
+# 直接读取系统环境变量
+message(JAVA_HOME=$ENV{JAVA_HOME})
+
+# 配置线程环境变量
+set(ENV{test} 123)
+message(test=$ENV{test})
+```
+
+```cmd
+loulan@loulandeMacBook-Pro F3.5 % cmake -P 3.5.2.3.cmake
+JAVA_HOME=/Users/loulan/.tool/jdk/jdk-17.0.15.jdk/Contents/Home
+test=123
+```
 
