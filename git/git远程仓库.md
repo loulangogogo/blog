@@ -95,6 +95,24 @@ origin  http://gitlab.dsknykj.cn/loulan/test.git (push)
 
 
 
+> git remote set-url origin <remote>
+>
+> 修改 Git 仓库中某个远程仓库（remote）的地址 URL。
+
+```cmd
+loulan@loulandeMacBook-Pro blog % git remote -v
+origin  git@github.com:loulangogogo/blog.git (fetch)
+origin  git@github.com:loulangogogo/blog.git (push)
+
+loulan@loulandeMacBook-Pro blog % git remote set-url origin https://github.com/loulangogogo/blog.git
+
+loulan@loulandeMacBook-Pro blog % git remote -v
+origin  https://github.com/loulangogogo/blog.git (fetch)
+origin  https://github.com/loulangogogo/blog.git (push)
+```
+
+
+
 # git fetch
 
 > **git fetch `<remote>`**
