@@ -1,9 +1,55 @@
+# 个人技术知识库
 
-- **java** ：关于 java 的基础、架构、设计等等内容.
-- **git** ： 涉及 git 的基础和使用的内容.
-- **docker** ： 关于 docker 镜像的创建；docker 工具的部署；docker 基础知识等内容.
-- **markdown** ： 关于 markdown 的使用内容
-- **mermaid** ： 关于 mermaid 的流程图、时序图 等使用内容
-- **linux** ：关于linux的学习文档
-- **software** ：软件学习
-- **typescript** : typescript的学习
+> 持续学习，持续记录。这里是我的技术笔记与学习心得汇总。
+
+## 目录
+
+### 编程语言
+
+| 分类 | 说明 |
+|------|------|
+| [Java](./java/) | Java 基础、注解详解、23 种设计模式、六大设计原则、JVM、第三方应用集成 |
+| [Python](./python/) | Python 基础语法、数据结构、字符串操作、条件循环语句 |
+| [C 语言](./C%20语言/) | C 语言基础、标准库、GCC、Makefile、CMake |
+| [TypeScript](./typescript/) | TypeScript 类型系统 |
+
+### 开发工具与技能
+
+| 分类 | 说明 |
+|------|------|
+| [Git](./git/) | Git 基础、分支管理、工作树、标签、远程仓库、GitHub 搜索技巧 |
+| [Docker](./docker/) | Docker 常用命令、DockerHub、工具部署（Jenkins） |
+| [Linux](./linux/) | 磁盘扩容、SSH 免密登录、防火墙、Docker 安装 |
+| [Markdown](./markdown/) | Markdown 扩展语法（GFM）、数学公式 |
+| [Mermaid](./mermaid/) | Mermaid 流程图、序列图、类图绘制 |
+
+### 中间件与数据库
+
+| 分类 | 说明 |
+|------|------|
+| [数据库](./数据库/) | MySQL、PostgreSQL、SQL Server 常见问题与操作 |
+| [软件工具](./software/) | Redis 五大数据类型、Maven 私服配置 |
+
+### 架构与考试
+
+| 分类 | 说明 |
+|------|------|
+| [系统架构师](./系统架构师/) | 软考高级 - 系统架构设计师备考笔记：综合知识、案例分析、论文写作、历年真题 |
+
+### AI 与其他
+
+| 分类 | 说明 |
+|------|------|
+| [AI](./ai/) | AI 工具使用、提示词工程、编码规则、MCP 服务 |
+| [英语学习](./英语学习/) | BBC 听力、哈利波特原版阅读、播客笔记 |
+| [其他](./其他/) | 常用快捷键整理（IntelliJ IDEA、VS Code、macOS、Safari、Vim） |
+
+## 仓库统计
+
+- **文档总数**：275+ 篇
+- **覆盖领域**：编程语言、开发工具、数据库、系统架构、AI、英语等
+- **持续更新中**
+
+## 许可证
+
+本仓库仅供个人学习与参考。
